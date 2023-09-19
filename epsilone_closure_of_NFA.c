@@ -51,6 +51,7 @@ int main() {
     printf("Enter epsilon transitions (state1 state2):\n");
     for (int i = 0; i < numTransitions; i++) {
         int state1, state2;
+        printf("Transition %d: ",i+1);
         scanf("%d %d", &state1, &state2);
         nfa[state1].epsilonTransitions[nfa[state1].numEpsilonTransitions++] = state2;
     }
