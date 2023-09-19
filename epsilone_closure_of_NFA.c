@@ -19,7 +19,7 @@ void computeEpsilonClosure(struct State nfa[], int currentState, bool visited[])
     }
 
     visited[currentState] = true;
-    printf("%d ", currentState);
+    printf("Q%d ", currentState);
 
     for (int i = 0; i < nfa[currentState].numEpsilonTransitions; i++) {
         computeEpsilonClosure(nfa, nfa[currentState].epsilonTransitions[i], visited);
@@ -39,23 +39,26 @@ int main() {
         nfa[i].isFinal = false;
         nfa[i].numEpsilonTransitions = 0;
     }
-
-    printf("Enter the number of epsilon transitions: ");
-    scanf("%d", &numTransitions);
-
+     // Print the states
+	printf("----STATES----\n");
+   for(int i=0;i<numStates;i++){
+	printf("Q%d,",i);
+	}
+	printf("\n--------------\n");
     // Input epsilon transitions
+     printf("Enter the number of epsilon transitions: ");
+    scanf("%d", &numTransitions);
     printf("Enter epsilon transitions (state1 state2):\n");
     for (int i = 0; i < numTransitions; i++) {
         int state1, state2;
         scanf("%d %d", &state1, &state2);
         nfa[state1].epsilonTransitions[nfa[state1].numEpsilonTransitions++] = state2;
     }
-
     // Compute epsilon closure for each state
     printf("Epsilon Closures:\n");
     for (int i = 0; i < numStates; i++) {
         bool visited[MAX_STATES] = {false};
-        printf("Epsilon Closure of State %d: ", i);
+        printf("Epsilon Closure of State Q%d: ", i);
         computeEpsilonClosure(nfa, i, visited);
         printf("\n");
     }
